@@ -1,7 +1,8 @@
-using System;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ToDoList.Models;
+using System;
 
 namespace ToDoList.Tests
 {
@@ -18,6 +19,20 @@ namespace ToDoList.Tests
     {
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=epicodus;port=3306;database=to_do_list_test;";
     }
+
+    [TestMethod]
+    public void GetAll_ReturnsEmptyListFromDatabase_ItemList()
+    {
+      //Arrange
+      List<Item> newList = new List<Item> { };
+
+      //Act
+      List<Item> result = Item.GetAll();
+
+      //Assert
+      CollectionAssert.AreEqual(newList, result);
+    }
+
 
     // [TestMethod]
     // public void Find_ReturnsCorrectItem_Item()
@@ -88,23 +103,7 @@ namespace ToDoList.Tests
     //   Assert.AreEqual(updatedDescription, result);
     // }
 
-    // [TestMethod]
-    // public void GetAll_ReturnsEmptyList_ItemList()
-    // {
-    // // Arrange
-    // List<Item> newList = new List<Item> { };
 
-    // // Act
-    // List<Item> result = Item.GetAll();
-
-    // // foreach (Item thisItem in result)
-    // // {
-    // //   Console.WriteLine("Output from empty list GetAll test: " + thisItem.Description);
-    // // }
-
-    // // Assert
-    // CollectionAssert.AreEqual(newList, result);
-    // }
 
     // [TestMethod]
     // public void GetAll_ReturnsItems_ItemList()

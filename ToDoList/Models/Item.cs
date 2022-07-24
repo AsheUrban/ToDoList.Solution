@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
@@ -5,10 +6,13 @@ namespace ToDoList.Models
 {
   public class Item
   {
-
     public string Description { get; set; }
     public int Id { get; }
 
+    public Item(string description)
+    {
+      Description = description;
+    }
     public Item(string description, int id)
     {
       Description = description;
@@ -43,20 +47,19 @@ namespace ToDoList.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = "Delete FROM items;";
+      cmd.CommandText = "DELETE FROM items;";
       cmd.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
       {
-        conn.Dispose();
+       conn.Dispose();
       }
     }
-
     public static Item Find(int searchId)
     {
-    // Temporarily returning placeholder item to get beyond compiler errors until we refactor to work with database.
-    Item placeholderItem = new Item("placeholder item");
-    return placeholderItem;
+      // Temporarily returning placeholder item to get beyond compiler errors until we refactor to work with database.
+      Item placeholderItem = new Item("placeholder item");
+      return placeholderItem;
     }
   }
 }

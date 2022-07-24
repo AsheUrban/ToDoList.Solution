@@ -4,7 +4,7 @@ using ToDoList;
 
 namespace ToDoList.Models
 {
-  public class DBConfiguration
+  public class DB
   {
     public static MySqlConnection Connection()
     {
