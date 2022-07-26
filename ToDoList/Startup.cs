@@ -43,7 +43,7 @@ namespace ToDoList
 
       app.Run(async (context) =>
       {
-        await context.Response.WriteAsync("Hello World!");
+        await context.Response.WriteAsync("Are you lost?");
       });
     }
   }
@@ -51,5 +51,4 @@ namespace ToDoList
     {
       public static string ConnectionString = "server=localhost;user id=root;password=epicodus;port=3306;database=to_do_list;";
     }
-
 }
