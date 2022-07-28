@@ -25,6 +25,7 @@ namespace ToDoList.Controllers
     {
       return View();
     }
+    
     [HttpPost]
     public ActionResult Create(Category category)
     {
