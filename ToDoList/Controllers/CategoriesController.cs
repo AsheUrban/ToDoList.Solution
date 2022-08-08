@@ -43,6 +43,8 @@ namespace ToDoList.Controllers
         return View(thisCategory);
     }
 
+    // These should be updated based on Items controllers and have associated views
+
     // public ActionResult Edit(int id)
     // {
     //   var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId ==id);
