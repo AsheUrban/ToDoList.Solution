@@ -1,4 +1,4 @@
-# ToDoList.Solution refractored to use mysql database configuration and minimal hosting model.
+# ToDoList.Solution
 
 #### By Ashe Urban
 
@@ -12,6 +12,8 @@
 * _Markdown_
 
 ## Description
+
+ToDoList.Solution refractored to use mysql database configuration and minimal hosting model.
 
 _The rest of the weekend homework will focus on building methods to access and update our database from scratch. This process is labor-intensive and involves a lot of tedious boilerplate code. Later in this section, we'll learn to use a framework called Entity Framework Core that manages our database connection and provides easy-to-use methods to access and update our database. The goal of building database methods from scratch now is to to get an understanding of what is really going on under the hood before we start using Entity Framework Core._
 
