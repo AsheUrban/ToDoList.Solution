@@ -14,7 +14,6 @@ namespace ToDoList.Tests
     {
       Item.ClearAll();
     }
-    
     public ItemTests()
     {
       IConfigurationBuilder builder = new ConfigurationBuilder()
@@ -61,8 +60,6 @@ namespace ToDoList.Tests
       //Assert
       CollectionAssert.AreEqual(testList, result);
     }
-
-    
 
     [TestMethod]
     public void GetAll_ReturnsItems_ItemList()
