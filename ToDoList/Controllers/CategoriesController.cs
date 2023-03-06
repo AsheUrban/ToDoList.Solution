@@ -40,33 +40,33 @@ namespace ToDoList.Controllers
       return View(thisCategory);
     }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId ==id);
-    //   return View(thisCategory);
-    // }
+    public ActionResult Edit(int id)
+    {
+      var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId ==id);
+      return View(thisCategory);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Categories category)
-    // {
-    //   _db.Entry(category).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Edit(Categories category)
+    {
+      _db.Entry(category).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-    // public ActionResult Delete(int id)
-    // {
-    //   var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-    //   return View(thisItem);
-    // }
+    public ActionResult Delete(int id)
+    {
+      var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      return View(thisItem);
+    }
 
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-    //   _db.Items.Remove(thisItem);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      _db.Items.Remove(thisItem);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
