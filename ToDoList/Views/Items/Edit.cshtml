@@ -1,4 +1,4 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
@@ -15,9 +15,9 @@
   @Html.LabelFor(model => model.Description)
   @Html.EditorFor(model => model.Description)
 
-  @Html.LabelFor(model => model.Category)
-  @Html.DropDownList("CategoryId")
+  @* @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId") *@
 
   <input type="submit" value="Save" />
 }
-<p></p>@Html.ActionLink("Back To List", "Index")</p> *@
+<p></p>@Html.ActionLink("Back To List", "Index")</p>
