@@ -1,4 +1,4 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
@@ -9,10 +9,10 @@
 {
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description)
-
+@* 
   @Html.LabelFor(model => model.Category)
-  @Html.DropDownList("CategoryId")
+  @Html.DropDownList("CategoryId") *@
 
   <input type="submit" value="Add new Item" class="btn btn-default" />
 }
-<p>@Html.ActionLink("Show All Items", "Index")</p> *@
+<p>@Html.ActionLink("Show All Items", "Index")</p>
