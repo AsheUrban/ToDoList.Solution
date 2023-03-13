@@ -65,10 +65,10 @@ namespace ToDoList.Controllers
 
     public ActionResult Edit(int id)
     {
-    Tag thisTag = _db.Tags.FirstOfDefault(tags => tags.TagId == id);
+    Tag thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
     return View(thisTag);
     }
-    
+
     [HttpPost]
     public ActionResult Edit(Tag tag)
     {
