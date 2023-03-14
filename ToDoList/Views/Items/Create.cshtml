@@ -4,7 +4,8 @@
 
 @model ToDoList.Models.Item
 
-<p><strong>NOTE: </strong>You need to have at least one category before you can add an item!</p>
+@* <p><strong>NOTE: </strong>You need to have at least one category before you can add an item!</p> *@
+<p>@Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 <p>Go to @Html.ActionLink("this page", "Create", "Categories") to create a category.</p>
 
 <h4>Add a new task</h4>
@@ -18,4 +19,6 @@
 
   <input type="submit" value="Add new Item" class="btn btn-default" />
 }
+<p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
 <p>@Html.ActionLink("Show All Items", "Index")</p>
