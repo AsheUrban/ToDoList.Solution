@@ -1,6 +1,12 @@
-# ToDoList.Solution
+# ToDoList.Solution | main
 
 #### By Ashe Urban
+
+_This project contains several branches, each with their own README.md and set up instructions:_
+* connectdatabase
+* joinentities_many_to_many
+* mhm_many_to_many
+* Identity
 
 ## Technologies Used on main branch
 
@@ -10,14 +16,6 @@
 * _mysql Database_
 * _dotnet_
 * _Markdown_
-
-## connectdatabase
-
-## joinentities_many_to_many
-
-## mhm_many_to_many
-
-## Identity
 
 ## Description
 
