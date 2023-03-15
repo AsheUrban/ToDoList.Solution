@@ -1,6 +1,6 @@
 # ToDoList.Solution | main
 
-#### By Ashe Urban
+#### By Ashe Urban & Co.
 
 _This project contains several branches, each with their own README.md and set up instructions:_
 * connectdatabase
