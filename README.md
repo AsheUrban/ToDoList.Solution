@@ -1,6 +1,6 @@
 # ToDoList.Solution | connectdatabase 
 
-#### By Ashe Urban
+#### By Ashe Urban & Co.
 
 ## Technologies Used on connectdatabase branch
 
