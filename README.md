@@ -1,6 +1,6 @@
 # ToDoList.Solution | joinentities_many_to_many
 
-#### By Ashe Urban
+#### By Ashe Urban & Co.
 
 ## Technologies Used on joinentities_many_to_many branch
 
