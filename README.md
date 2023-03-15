@@ -2,7 +2,7 @@
 
 #### By Ashe Urban
 
-## Technologies Used
+## Technologies Used on main branch
 
 * _C#_
 * _CSHTML_
@@ -10,6 +10,14 @@
 * _mysql Database_
 * _dotnet_
 * _Markdown_
+
+## connectdatabase
+
+## joinentities_many_to_many
+
+## mhm_many_to_many
+
+## Identity
 
 ## Description
 
@@ -24,6 +32,7 @@ _Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/database-basic
 
 * _Clone or download responsitory to your local._
 * _Cd into Factory and run dotnet restore, dotnet build to confirm the project has no errors._
+* _In MySQL Workbench, set up tables for categories and items classes with the corresponding properties._
 * _Touch appsettings.json and add the following configuration:_
 
 {
@@ -31,6 +40,7 @@ _Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/database-basic
       "DefaultConnection": "Server=localhost;Port=3306;database=[schema-name];uid=root;pwd=[password];"
   }
 }
+
 * _Then use dotnet watch run to run web application._
 
 _NOTE:_ [password] and [schema-name] should be replaced by your information. Do not include square brackets in final configuration.
