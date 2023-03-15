@@ -22,7 +22,6 @@ _It's very common for a database to change over time. In fact, in large projects
 
 _Fortunately, EF Core provides a solution for this. We can use migrations to create a new database or update an existing database based on our code. Migrations are a common feature of many frameworks, including Rails, which uses Active Record. So in this lesson, we're going to learn about database migrations, how to create them, and install the tools necessary for the job. The instructions in this lesson can be applied to any other project you create._
 
-
 _Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/many-to-many-relationships/code-first-development-and-migrations
 
 ## Setup/Installation Requirements
