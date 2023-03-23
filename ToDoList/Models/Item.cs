@@ -1,17 +1,20 @@
+
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ToDoList.Models
 {
-    public class Item
-    {
-        public Item()
-        {
-            this.JoinEntities = new HashSet<CategoryItem>();
-        }
+  public class Item
+  {
+    public int ItemId { get; set; }
 
-        public int ItemId { get; set; }
-        public string Description { get; set; }
-        public virtual ApplicationUser User { get; set; } //new line
-        public virtual ICollection<CategoryItem> JoinEntities { get; }
-    }
+    [Required(ErrorMessage="The item's description cannot be empty. Please add a description.")]
+    public string Description { get; set; }
+
+    [Range(1, int.MaxValue, ErrorMessage="You must add your item to a category. If no categories have been created, please add one now.")]
+    public int CategoryId { get; set; }
+
+    public Category Category { get; set; }
+    public List<ItemTag> JoinEntities { get; }
+  }
 }

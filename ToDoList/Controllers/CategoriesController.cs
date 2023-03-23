@@ -34,44 +34,44 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Details(int id)
+    public ActionResult Edit(int id)
     {
-        var thisCategory = _db.Categories
-            .Include(category => category.JoinEntities)
-            .ThenInclude(join => join.Item)
-            .FirstOrDefault(category => category.CategoryId == id);
-        return View(thisCategory);
+      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+      return View(thisCategory);
     }
 
-    // These should be updated based on Items controllers and have associated views
+    [HttpPost]
+    public ActionResult Edit(Category category)
+    {
+      // _db.Entry(category).State = EntityState.Modified;
+      _db.Categories.Update(category);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId ==id);
-    //   return View(thisCategory);
-    // }
+    public ActionResult Details(int id)
+    {
+      Category thisCategory = _db.Categories
+                                  .Include(category => category.Items)
+                                  .ThenInclude(item => item.JoinEntities)
+                                  .ThenInclude(join => join.Tag)                                 
+                                  .FirstOrDefault(category => category.CategoryId == id);
+      return View(thisCategory);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Categories category)
-    // {
-    //   _db.Entry(category).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    public ActionResult Delete(int id)
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+      return View(thisCategory);
+    }
 
-    // public ActionResult Delete(int id)
-    // {
-    //   var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-    //   return View(thisItem);
-    // }
-
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
-    //   _db.Items.Remove(thisItem);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+      _db.Categories.Remove(thisCategory);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

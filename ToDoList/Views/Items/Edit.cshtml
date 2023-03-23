@@ -1,3 +1,4 @@
+
 @{
   Layout = "_Layout";
 }
@@ -10,15 +11,14 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.ItemId)
+  @Html.HiddenFor(model => model.ItemId)
 
-    @Html.LabelFor(model => model.Description)
-    @Html.EditorFor(model => model.Description)
+  @Html.LabelFor(model => model.Description)
+  @Html.EditorFor(model => model.Description)
 
-    @Html.Label("Select category")
-    @Html.DropDownList("CategoryId")
+  @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId")
 
-    <input type="submit" value="Save" />
+  <input type="submit" value="Save" />
 }
-
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<p></p>@Html.ActionLink("Back To List", "Index")</p>

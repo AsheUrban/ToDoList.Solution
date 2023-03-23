@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Identity;
+// using Microsoft.AspNetCore.Identity;
 
-namespace ToDoList.Models
-{
-    public class ApplicationUser : IdentityUser
-    {
+// namespace ToDoList.Models
+// {
+//     public class ApplicationUser : IdentityUser
+//     {
 
-    }
-}
+//     }
+// }

@@ -1,0 +1,22 @@
+
+@{
+  Layout = "_Layout";
+}
+
+@model ToDoList.Models.Category
+
+<h2>Edit</h2>
+
+<h4>Edit this Category: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.CategoryId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+
+  <input type="submit" value="Save" />
+}
+<p></p>@Html.ActionLink("Back To List", "Index")</p>
