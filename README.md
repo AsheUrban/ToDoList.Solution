@@ -8,51 +8,147 @@ _This project contains several branches, each with their own README.md and set u
 * mhm_many_to_many
 * Identity
 
-## Technologies Used on main branch
+# ToDoList: Categories & Items
+
+#### A website that allows users to organize to-do Items inside Categories.
+
+
+## Technologies Used
 
 * _C#_
+* _.NET 5 (ASP.NET Core MVC)_
 * _CSHTML_
 * _CSS_
-* _mysql Database_
+* _Entity Framework Core_
+* _MySQL (SQL Database)_
 * _dotnet_
+* _LINQ_
 * _Markdown_
 
 ## Description
 
-ToDoList.Solution refractored to use mysql database configuration and minimal hosting model.
+_ToDoList is an MVC app that groups tasks (Items) under Categories. Each Category can have many Items (one-to-many). Users can add Categories, add Items to a Category, and view details._
 
-_The rest of the weekend homework will focus on building methods to access and update our database from scratch. This process is labor-intensive and involves a lot of tedious boilerplate code. Later in this section, we'll learn to use a framework called Entity Framework Core that manages our database connection and provides easy-to-use methods to access and update our database. The goal of building database methods from scratch now is to to get an understanding of what is really going on under the hood before we start using Entity Framework Core._
-
-
-_Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/database-basics/connecting-a-database-to-an-asp-net-core-app-with-mysqlconnector
+* _List all Categories._
+* _View Category details and its Items._
+* _Add new Categories._
+* _Add new Items to a Category._
+* _Delete Items; delete Categories (Items are removed via cascade)._
 
 ## Setup/Installation Requirements
 
-* _Clone or download responsitory to your local._
-* _Cd into Factory and run dotnet restore, dotnet build to confirm the project has no errors._
-* _In MySQL Workbench, set up tables for categories and items classes with the corresponding properties._
-* _Touch appsettings.json and add the following configuration:_
-
-{
-  "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[schema-name];uid=root;pwd=[password];"
+* _Clone or download the repository to your local machine._
+* _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+  ```
+  dotnet restore
+  ```
+* _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+  ```
+  {
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=todolist;uid=home;pwd=YOUR_PASSWORD;"
+    }
   }
-}
+  ```
+  _NOTE: Replace `YOUR_PASSWORD` with your MySQL password for user `home`. Use the exact schema name `todolist` (all lowercase)._
 
-* _Then use dotnet watch run to run web application._
+* _Start your local MySQL server and open MySQL Workbench._
 
-_NOTE:_ [password] and [schema-name] should be replaced by your information. Do not include square brackets in final configuration.
+### Build the Database Schema in MySQL Workbench (GUI)
 
-## Known Bugs -- IMPORTANT --
+* _Create Schema_
+  * _Database ➜ Create Schema… ➜ Name: `todolist` ➜ Apply ➜ Apply ➜ Finish._
+
+* _Create `categories` table_
+  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
+  * _Columns tab:_
+    * _`CategoryId` → INT, check PK, NN, AI_
+    * _`Name` → VARCHAR(255), check NN_
+  * _Apply ➜ Apply ➜ Finish._
+
+* _Create `items` table_
+  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `items`_
+  * _Columns tab:_
+    * _`ItemId` → INT, check PK, NN, AI_
+    * _`Description` → VARCHAR(255), check NN_
+    * _`CategoryId` → INT (leave NULL if Items may exist without a Category; check NN if every Item must belong to one)_
+  * _Foreign Keys tab:_
+    * _Add Foreign Key ➜ Name: `fk_items_categories`_
+    * _Referenced Table: `categories`_
+    * _Column Mapping: `CategoryId` (child) → `CategoryId` (parent)_
+    * _On Delete: CASCADE; On Update: NO ACTION_
+  * _Apply ➜ Apply ➜ Finish._
+
+* _Verify_
+  * _Expand `todolist ➜ Tables` and confirm `categories` and `items` exist._
+
+### Optional: SQL Script Alternative (run in a Workbench SQL tab)
+
+```
+CREATE DATABASE IF NOT EXISTS todolist;
+USE todolist;
+
+CREATE TABLE IF NOT EXISTS categories (
+  CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  ItemId INT AUTO_INCREMENT PRIMARY KEY,
+  Description VARCHAR(255) NOT NULL,
+  CategoryId INT NULL,
+  INDEX idx_items_category (CategoryId),
+  CONSTRAINT fk_items_categories
+    FOREIGN KEY (CategoryId)
+    REFERENCES categories (CategoryId)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+);
+```
+
+### Optional: Create/Grant MySQL User (fix “Access denied”)
+
+```
+CREATE USER IF NOT EXISTS 'home'@'localhost' IDENTIFIED BY 'YOUR_PASSWORD';
+CREATE USER IF NOT EXISTS 'home'@'127.0.0.1' IDENTIFIED BY 'YOUR_PASSWORD';
+CREATE USER IF NOT EXISTS 'home'@'::1' IDENTIFIED BY 'YOUR_PASSWORD';
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX
+ON `todolist`.*
+TO 'home'@'localhost', 'home'@'127.0.0.1', 'home'@'::1';
+
+FLUSH PRIVILEGES;
+```
+
+### Run the Web Application
+
+```
+dotnet run
+```
+_or_
+```
+dotnet watch run
+```
+
+_Navigate to the localhost URL shown in the console and explore the project._
+
+## Troubleshooting
+
+* _ERROR 1171 (“All parts of a PRIMARY KEY must be NOT NULL”): Ensure only `ItemId` is PK on `items` (do not include `CategoryId` in the PK unless it’s NOT NULL and you truly want a composite key)._
+* _FK errors (“Missing column … in referenced table”): The FK must map `items.CategoryId` → `categories.CategoryId` exactly (names and types must match)._
+* _“Access denied for user 'home'@'localhost' to database 'todolist'”: Grant privileges as shown above; ensure the schema name is exactly `todolist`; confirm you’re connecting as the same user/host that has the grants; if needed, set the connection host to `127.0.0.1` and grant to `home@127.0.0.1`._
+* _Case sensitivity: On some systems database names are case-sensitive. Use `todolist` consistently in appsettings and grants._
+
+## Known Bugs
 
 * _No known bugs._
 
 ## License
 
-* MIT
+* _MIT_
 
 ## Contact Information
 
-_Please contact me with any questions or contribuitions, ashe@goldentongue.com_
+_Please contact me with any questions or contributions: ashe@goldentongue.com_
 
-Copyright(c) _2022, updated February 2023, Ashe Urban_
+Copyright(c) 2025 Ashe Urban
