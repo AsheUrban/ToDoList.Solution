@@ -1,51 +1,125 @@
-# ToDoList.Solution | connectdatabase 
+# ToDoList: Categories & Items
 
-#### By Ashe Urban & Co.
+_This project contains several branches, each with their own README.md and set up instructions:_
+* connectdatabase
+* joinentities_many_to_many
+* mhm_many_to_many
+* Identity
 
-## Technologies Used on connectdatabase branch
+## Technologies Used
 
 * _C#_
+* _.NET 5 (ASP.NET Core MVC)_
 * _CSHTML_
 * _CSS_
-* _EF Core_
-* _mysql Database_
+* _Entity Framework Core_
+* _MySQL (SQL Database)_
 * _dotnet_
+* _LINQ_
 * _Markdown_
 
 ## Description
 
-ToDoList.Solution refractored to use mysql database configuration and minimal hosting model.
+_ToDoList is an MVC app that groups tasks (Items) under Categories. Each Category can have many Items (one-to-many). Users can add Categories, add Items to a Category, and view details._
 
-_For this walkthrough, we'll use our To Do List app as an example, and we'll start where we left off with our To Do List app: using MySqlConnector to communicate with a MySQL database. That means this walkthrough will include instructions on how to remove MySqlConnector and how to update the custom methods we created over the weekend homework to communicate with our MySQL database. As always, you are welcome to code a long with these lessons, or just read through them. We'll provide links to an example repo as needed and at the very end of the walkthrough._
-
-
-_Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/database-basics/configuration-for-entity-framework-core
+* _List all Categories._
+* _View Category details and its Items._
+* _Add new Categories._
+* _Add new Items to a Category._
+* _Delete Items; delete Categories (Items are removed via cascade)._
 
 ## Setup/Installation Requirements
 
-* _Clone or download responsitory to your local._
-* _Cd into Factory and run dotnet restore, dotnet build to confirm the project has no errors._
-* _Touch appsettings.json and add the following configuration:_
-
-{
-  "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[schema-name];uid=root;pwd=[password];"
+* _Clone or download the repository to your local machine._
+* _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+  ```
+  dotnet restore
+  ```
+* _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+  ```
+  {
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=todolist;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+    }
   }
-}
-* _Then use dotnet watch run to run web application._
+  ```
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. Use the exact schema name `todolist` (all lowercase)._
 
-_NOTE:_ [password] and [schema-name] should be replaced by your information. Do not include square brackets in final configuration.
+* _Start your local MySQL server and open MySQL Workbench._
 
-## Known Bugs -- IMPORTANT --
+### Build the Database Schema in MySQL Workbench (GUI)
 
-* _No known bugs._
+* _Create Schema_
+  * _Database ➜ Create Schema… ➜ Name: `todolist` ➜ Apply ➜ Apply ➜ Finish._
+
+* _Create `categories` table_
+  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
+  * _Columns tab:_
+    * _`CategoryId` → INT, check PK, NN, AI_
+    * _`Name` → VARCHAR(255), check NN_
+  * _Apply ➜ Apply ➜ Finish._
+
+* _Create `items` table_
+  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `items`_
+  * _Columns tab:_
+    * _`ItemId` → INT, check PK, NN, AI_
+    * _`Description` → VARCHAR(255), check NN_
+    * _`CategoryId` → INT (leave NULL if Items may exist without a Category; check NN if every Item must belong to one)_
+  * _Foreign Keys tab:_
+    * _Add Foreign Key ➜ Name: `fk_items_categories`_
+    * _Referenced Table: `categories`_
+    * _Column Mapping: `CategoryId` (child) → `CategoryId` (parent)_
+    * _On Delete: CASCADE; On Update: NO ACTION_
+  * _Apply ➜ Apply ➜ Finish._
+
+* _Verify_
+  * _Expand `todolist ➜ Tables` and confirm `categories` and `items` exist._
+
+### Optional: SQL Script Alternative (run in a Workbench SQL tab)
+
+```
+CREATE DATABASE IF NOT EXISTS todolist;
+USE todolist;
+
+CREATE TABLE IF NOT EXISTS categories (
+  CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  ItemId INT AUTO_INCREMENT PRIMARY KEY,
+  Description VARCHAR(255) NOT NULL,
+  CategoryId INT NULL,
+  INDEX idx_items_category (CategoryId),
+  CONSTRAINT fk_items_categories
+    FOREIGN KEY (CategoryId)
+    REFERENCES categories (CategoryId)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+);
+```
+
+### Run the Web Application
+
+```
+dotnet run
+```
+_or_
+```
+dotnet watch run
+```
+
+_Navigate to the localhost URL shown in the console and explore the project._
+
+## Known Bugs
+
+* _Categories cannot be edited at this time as there is no view created._
 
 ## License
 
-* MIT
+* _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-## Contact Information
 
-_Please contact me with any questions or contribuitions, ashe@goldentongue.com_
+## 
 
-Copyright(c) _2022, updated February 2023, Ashe Urban_
+Copyright(c) 2025 Ashe Urban
