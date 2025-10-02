@@ -2,10 +2,12 @@
 
 #### By Ashe Urban & Co.
 
-_This project contains several branches, each with their own README.md and set up instructions:_
+_This project contains several branches, each with their own README.md and set up instructions. These branches were last updated and tested in 2025:_
 * main
 * connectdatabase
 * Identity
+
+_These branches have not been updated since 2023:_
 * joinentities_many_to_many
 * mhm_many_to_many
 
