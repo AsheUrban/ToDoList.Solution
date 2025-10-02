@@ -1,16 +1,13 @@
-# ToDoList.Solution | main
+# ToDoList: Categories & Items
 
 #### By Ashe Urban & Co.
 
 _This project contains several branches, each with their own README.md and set up instructions:_
+* main
 * connectdatabase
+* Identity
 * joinentities_many_to_many
 * mhm_many_to_many
-* Identity
-
-# ToDoList: Categories & Items
-
-#### A website that allows users to organize to-do Items inside Categories.
 
 
 ## Technologies Used
@@ -46,11 +43,11 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=todolist;uid=home;pwd=YOUR_PASSWORD;"
+      "DefaultConnection": "Server=localhost;Port=3306;database=todolist;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
     }
   }
   ```
-  _NOTE: Replace `YOUR_PASSWORD` with your MySQL password for user `home`. Use the exact schema name `todolist` (all lowercase)._
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. Use the exact schema name `todolist` (all lowercase)._
 
 * _Start your local MySQL server and open MySQL Workbench._
 
