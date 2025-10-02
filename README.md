@@ -129,23 +129,15 @@ dotnet watch run
 
 _Navigate to the localhost URL shown in the console and explore the project._
 
-## Troubleshooting
-
-* _ERROR 1171 (“All parts of a PRIMARY KEY must be NOT NULL”): Ensure only `ItemId` is PK on `items` (do not include `CategoryId` in the PK unless it’s NOT NULL and you truly want a composite key)._
-* _FK errors (“Missing column … in referenced table”): The FK must map `items.CategoryId` → `categories.CategoryId` exactly (names and types must match)._
-* _“Access denied for user 'home'@'localhost' to database 'todolist'”: Grant privileges as shown above; ensure the schema name is exactly `todolist`; confirm you’re connecting as the same user/host that has the grants; if needed, set the connection host to `127.0.0.1` and grant to `home@127.0.0.1`._
-* _Case sensitivity: On some systems database names are case-sensitive. Use `todolist` consistently in appsettings and grants._
-
 ## Known Bugs
 
 * _No known bugs._
 
 ## License
 
-* _MIT_
+* _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-## Contact Information
 
-_Please contact me with any questions or contributions: ashe@goldentongue.com_
+## 
 
 Copyright(c) 2025 Ashe Urban
