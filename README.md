@@ -93,5 +93,5 @@ _ToDoList (Identity Edition) is an MVC app that groups tasks (Items) under Categ
 
 ##
 
-Copyright(c) 2025 Ashe Urban
+Copyright(c) 2023 Ashe Urban
 
