@@ -45,7 +45,7 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=todolist;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
     }
   }
   ```
@@ -131,6 +131,24 @@ dotnet watch run
 
 _Navigate to the localhost URL shown in the console and explore the project._
 
+## Testing
+
+The test project uses its own configuration file and expects `ConnectionStrings:TestConnection`.
+
+
+* Create `ToDoList.Tests/appsettings.json` with:
+```
+    {
+      "ConnectionStrings": {
+        "TestConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=[YOUR_ID];Password=[YOUR_PASSWORD];"
+      }
+    }
+```
+* Run tests
+From the repository root or from the ToDoList.Tests directory:
+```
+    dotnet test
+```
 ## Known Bugs
 
 * _No known bugs._
