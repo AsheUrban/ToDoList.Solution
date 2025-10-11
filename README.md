@@ -1,4 +1,4 @@
-# ToDoList: Categories & Items
+# ToDoList (connectdatabase branch)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -41,34 +41,52 @@ It replaces in-memory data with persistent storage and introduces migrations for
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
-* _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+* _Open a terminal and `cd` into the `ToDoList` project directory, then restore:_
+
   ```
   dotnet restore
   ```
-* _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+* _Create `appsettings.json` in the `ToDoList` project folder with a connection string for MySQL (you may also use User Secrets):_
+
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+      "DefaultConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=home;Password=YOUR_PASSWORD;"
     }
   }
   ```
-  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+_Notes:_
+*  _Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys.
 
-* _Start your local MySQL server and open MySQL Workbench._
+* _Create the database and tables automatically via migrations:_
+  ```
+  dotnet ef migrations add Initial
+  ```
+  ```
+  dotnet ef database update
+  ```
+  _These two commands apply the `Initial` migration and scaffolds Identity tables plus app tables into `to_do_list`._
 
+* _Run the web application:_
+  ```
+  dotnet run
+  ```
+  _or_
+  ```
+  dotnet watch run
+  ```
+  _Navigate to the shown localhost URL, register a new account, then create Categories and Items._
 
-### Run the Web Application
+## Troubleshooting
 
-```
-dotnet run
-```
-_or_
-```
-dotnet watch run
-```
+* _List contexts and drop database (dev reset):_
 
-_Navigate to the localhost URL shown in the console and explore the project._
+  ```
+  dotnet ef dbcontext list
+  dotnet ef database drop -f --context ToDoListContext
+  dotnet ef database update --context ToDoListContext
+  ```
 
 ## Known Bugs
 
@@ -78,7 +96,7 @@ _Navigate to the localhost URL shown in the console and explore the project._
 
 * _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-
 ## 
 
 Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu 
+
