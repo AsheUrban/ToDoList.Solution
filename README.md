@@ -1,59 +1,87 @@
-# ToDoList.Solution | joinentities_many_to_many
+# ToDoList: Categories & Items
 
-#### By Ashe Urban & Co.
+#### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
-## Technologies Used on joinentities_many_to_many branch
+## Branches & Scope
+
+This project includes several branches that build upon each other in complexity — from a simple CRUD MVC app, to database integration, to authentication, and eventually to more advanced relational modeling.
+
+| **Branch** | **What it Demonstrates** | **Notes** |
+|-------------|--------------------------|-----------|
+| **main** | Basic ASP.NET Core MVC app in C# with a one-to-many relationship between Categories and Items using EF Core and MySQL. | Establishes foundational CRUD functionality and MVC structure. |
+| **connectdatabase** | Integration of Entity Framework Core with MySQL, configuring database connectivity and schema management. | *Emphasizes EF migrations over manual schema creation.* Demonstrates database setup, schema generation, and CRUD integration testing. |
+| **identity** | Adds ASP.NET Core **Identity** for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the Identity branch with **Tags** for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Prototype branch exploring **many-to-many** relationships using a join entity. | Conceptual next step after `main`; early prototype not recently updated. |
+| **mhm_many_to_many** | Companion branch to `joinentities_many_to_many`. | Parallel experiment reflecting pairing or alternative implementation. |
+
+## Technologies Used
 
 * _C#_
+* _.NET 5 (ASP.NET Core MVC)_
 * _CSHTML_
 * _CSS_
-* _EF Core_
-* _mysql Database_
+* _Entity Framework Core_
+* _MySQL (SQL Database)_
 * _dotnet_
+* _LINQ_
 * _Markdown_
 
 ## Description
 
-ToDoList.Solution refractored to use ef core to set up a many to many relationship between databases and using MVC and not the new minimal hosting model. To run this project using mhm please checkout the mhm_many_to_many branch.
+_This branch evolves the project’s data model to support many-to-many relationships between Categories and Items. 
+Each Item can now belong to multiple Categories, and each Category can contain multiple Items._
 
-_So far, we've manually created and updated our database using MySQL Workbench. However, this approach isn't very effective for a large production application where many developers are collaborating together. Let's say we have many different teams that are working on different features in an application and we're working on a team that makes changes to the database. How can we convey the changes to other teams working on the application? We'd need to give everyone exact instructions on the changes we made, which could get tedious fast, especially if we're making a lot of changes._
+* _Implements many-to-many relationships between Items and Categories._
+* _Creates a join table managed by Entity Framework Core._
+* _Updates controllers and views to handle multiple associations._
+* _Adds selection interfaces for linking Items and Categories._
+* _Demonstrates advanced relational mapping using EF Core._
 
-_It's very common for a database to change over time. In fact, in large projects, there may be hundreds or even thousands of changes to a database over the course of a project. It would be very tedious to make all those changes in MySQL Workbench or another database tool._
 
-_Fortunately, EF Core provides a solution for this. We can use migrations to create a new database or update an existing database based on our code. Migrations are a common feature of many frameworks, including Rails, which uses Active Record. So in this lesson, we're going to learn about database migrations, how to create them, and install the tools necessary for the job. The instructions in this lesson can be applied to any other project you create._
 
-_Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/many-to-many-relationships/code-first-development-and-migrations
 
 ## Setup/Installation Requirements
 
-_Because this branch uses migrations, you do not need to prebuild a database. Simply configure appsettings to use your own naming conventions._
-
-* _Clone or download responsitory to your local._
-* _Cd into top level project directory and run dotnet restore, dotnet build to confirm the project has no errors._
-* _Touch appsettings.json and add the following configuration:_
-
-{
-  "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[schema-name];uid=root;pwd=[password];"
+* _Clone or download the repository to your local machine._
+* _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+  ```
+  dotnet restore
+  ```
+* _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+  ```
+  {
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+    }
   }
-}
-* _Use dotnet watch run to run web application continuously while editing and dotnet run to launch the current itteration without the ability to make live changes._
+  ```
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
 
-* _dotnet ef migrations add DatabaseUpdateName to scaffold database and each time classes or properties are modified._
-* _dotnet ef database update to push changes to database after each migration._
+* _Start your local MySQL server and open MySQL Workbench._
 
-_NOTE:_ [password] and [schema-name] should be replaced by your information. Do not include square brackets in final configuration.
 
-## Known Bugs -- IMPORTANT --
+### Run the Web Application
+
+```
+dotnet run
+```
+_or_
+```
+dotnet watch run
+```
+
+_Navigate to the localhost URL shown in the console and explore the project._
+
+## Known Bugs
 
 * _No known bugs._
 
 ## License
 
-* MIT
+* _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-## Contact Information
 
-_Please contact me with any questions or contribuitions, ashe@goldentongue.com_
+## 
 
-Copyright(c) _2022, updated February 2023, Ashe Urban_
+Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
