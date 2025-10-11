@@ -42,10 +42,12 @@ Each Item can now belong to multiple Categories, and each Category can contain m
 
 * _Clone or download the repository to your local machine._
 * _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+
   ```
   dotnet restore
   ```
 * _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+
   ```
   {
     "ConnectionStrings": {
@@ -74,6 +76,7 @@ _Navigate to the localhost URL shown in the console and explore the project._
 ## Troubleshooting
 
 * _List contexts and drop database (dev reset):_
+
   ```
   dotnet ef dbcontext list
   dotnet ef database drop -f --context ToDoListContext
