@@ -105,20 +105,6 @@ CREATE TABLE IF NOT EXISTS items (
 );
 ```
 
-### Optional: Create/Grant MySQL User (fix “Access denied”)
-
-```
-CREATE USER IF NOT EXISTS 'home'@'localhost' IDENTIFIED BY 'YOUR_PASSWORD';
-CREATE USER IF NOT EXISTS 'home'@'127.0.0.1' IDENTIFIED BY 'YOUR_PASSWORD';
-CREATE USER IF NOT EXISTS 'home'@'::1' IDENTIFIED BY 'YOUR_PASSWORD';
-
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX
-ON `todolist`.*
-TO 'home'@'localhost', 'home'@'127.0.0.1', 'home'@'::1';
-
-FLUSH PRIVILEGES;
-```
-
 ### Run the Web Application
 
 ```
