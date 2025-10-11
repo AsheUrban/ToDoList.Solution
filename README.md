@@ -1,10 +1,19 @@
 # ToDoList: Categories & Items
 
-_This project contains several branches, each with their own README.md and set up instructions:_
-* connectdatabase
-* joinentities_many_to_many
-* mhm_many_to_many
-* Identity
+#### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
+
+## Branches & Scope
+
+This project includes several branches that build upon each other in complexity — from a simple CRUD MVC app, to database integration, to authentication, and eventually to more advanced relational modeling.
+
+| **Branch** | **What it Demonstrates** | **Notes** |
+|-------------|--------------------------|-----------|
+| **main** | Basic ASP.NET Core MVC app in C# with a one-to-many relationship between Categories and Items using EF Core and MySQL. | Establishes foundational CRUD functionality and MVC structure. |
+| **connectdatabase** | Integration of Entity Framework Core with MySQL, configuring database connectivity and schema management. | *Emphasizes EF migrations over manual schema creation.* Demonstrates database setup, schema generation, and CRUD integration testing. |
+| **identity** | Adds ASP.NET Core **Identity** for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the Identity branch with **Tags** for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Prototype branch exploring **many-to-many** relationships using a join entity. | Conceptual next step after `main`; early prototype not recently updated. |
+| **mhm_many_to_many** | Companion branch to `joinentities_many_to_many`. | Parallel experiment reflecting pairing or alternative implementation. |
 
 ## Technologies Used
 
@@ -20,13 +29,14 @@ _This project contains several branches, each with their own README.md and set u
 
 ## Description
 
-_ToDoList is an MVC app that groups tasks (Items) under Categories. Each Category can have many Items (one-to-many). Users can add Categories, add Items to a Category, and view details._
+_This branch extends the base ToDoList project by connecting it to a MySQL database using Entity Framework Core. 
+It replaces in-memory data with persistent storage and introduces migrations for managing the database schema._
 
-* _List all Categories._
-* _View Category details and its Items._
-* _Add new Categories._
-* _Add new Items to a Category._
-* _Delete Items; delete Categories (Items are removed via cascade)._
+* _Implements ToDoListContext for EF Core integration._
+* _Configures connection strings in appsettings.json._
+* _Enables schema creation through EF migrations or provided .sql files._
+* _Stores Categories and Items persistently in MySQL._
+* _Demonstrates how to build and run a connected .NET MVC app._
 
 ## Setup/Installation Requirements
 
