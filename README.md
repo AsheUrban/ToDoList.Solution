@@ -1,56 +1,171 @@
-# ToDoList.Solution | identity
+# ToDoList: Categories & Items
 
-#### By Ashe Urban & Co.
+#### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
-## Technologies Used on identity branch
+## Branches & Scope
+
+This project includes several branches that build upon each other in complexity — from a simple CRUD MVC app, to database integration, to authentication, and eventually to more advanced relational modeling.
+
+| **Branch** | **What it Demonstrates** | **Notes** |
+|-------------|--------------------------|-----------|
+| **main** | Basic ASP.NET Core MVC app in C# with a one-to-many relationship between Categories and Items using EF Core and MySQL. | Establishes foundational CRUD functionality and MVC structure. |
+| **connectdatabase** | Integration of Entity Framework Core with MySQL, configuring database connectivity and schema management. | *Emphasizes EF migrations over manual schema creation.* Demonstrates database setup, schema generation, and CRUD integration testing. |
+| **identity** | Adds ASP.NET Core **Identity** for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the Identity branch with **Tags** for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Prototype branch exploring **many-to-many** relationships using a join entity. | Conceptual next step after `main`; early prototype not recently updated. |
+| **mhm_many_to_many** | Companion branch to `joinentities_many_to_many`. | Parallel experiment reflecting pairing or alternative implementation. |
+
+## Technologies Used
 
 * _C#_
+* _.NET 5 (ASP.NET Core MVC)_
 * _CSHTML_
 * _CSS_
-* _EF Core_
-* _mysql Database_
+* _Entity Framework Core_
+* _MySQL (SQL Database)_
 * _dotnet_
+* _LINQ_
 * _Markdown_
 
 ## Description
 
-ToDoList.Solution refractored to use ef core to set up a many to many relationship between databases and using MVC and not the new minimal hosting model. To run this project using mhm please checkout the mhm_many_to_many branch.
+_This branch builds on the Identity version of ToDoList by introducing a Tag entity and related updates. Tags add another layer of 
+organization to the existing data model. The branch also includes small adjustments to routing, views, and data handling to 
+support the new entity and improve project consistency._
 
-_In this lesson, we'll add Identity to our To Do List application. This will involve creating a new class to manage user accounts with Identity, updating our Program.cs to include Identity in our project, and configuring Identity to work with Entity Framework Core. You can follow this same process to add Identity to any of your projects._
+* _Adds Tag class to expand the data model._
+* _Updates context and migrations to include Tags._
+* _Adds support for displaying and managing Tags in the UI._
+* _Refines routing between login, registration, and task pages._
+* _Maintains existing Identity authentication and CRUD functionality._
+* _Lays groundwork for future many-to-many relationships between Tags, Items, and Categories._
 
 
-_Link to assignment:_ https://www.learnhowtoprogram.com/c-and-net/authentication-with-identity/identity-setup-and-configuration
 
 ## Setup/Installation Requirements
 
-_Because this branch uses migrations, you do not need to prebuild a database. Simply configure appsettings to use your own naming conventions._
-
-* _Clone or download responsitory to your local._
-* _Cd into top level project directory and run dotnet restore, dotnet build to confirm the project has no errors._
-* _Touch appsettings.json and add the following configuration:_
-
-{
-  "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[schema-name];uid=root;pwd=[password];"
+* _Clone or download the repository to your local machine._
+* _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+  ```
+  dotnet restore
+  ```
+* _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+  ```
+  {
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+    }
   }
-}
-* _Use dotnet watch run to run web application continuously while editing and dotnet run to launch the current itteration without the ability to make live changes._
+  ```
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. Use the exact schema name `todolist` (all lowercase)._
 
-* _dotnet ef migrations add DatabaseUpdateName to scaffold database and each time classes or properties are modified._
-* _dotnet ef database update to push changes to database after each migration._
+* _Start your local MySQL server and open MySQL Workbench._
 
-_NOTE:_ [password] and [schema-name] should be replaced by your information. Do not include square brackets in final configuration.
+### Build the Database Schema in MySQL Workbench (GUI)
 
-## Known Bugs -- IMPORTANT --
+* _Create Schema_
+  * _Database ➜ Create Schema… ➜ Name: `todolist` ➜ Apply ➜ Apply ➜ Finish._
+
+* _Create `categories` table_
+  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
+  * _Columns tab:_
+    * _`CategoryId` → INT, check PK, NN, AI_
+    * _`Name` → VARCHAR(255), check NN_
+  * _Apply ➜ Apply ➜ Finish._
+
+* _Create `items` table_
+  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `items`_
+  * _Columns tab:_
+    * _`ItemId` → INT, check PK, NN, AI_
+    * _`Description` → VARCHAR(255), check NN_
+    * _`CategoryId` → INT (leave NULL if Items may exist without a Category; check NN if every Item must belong to one)_
+  * _Foreign Keys tab:_
+    * _Add Foreign Key ➜ Name: `fk_items_categories`_
+    * _Referenced Table: `categories`_
+    * _Column Mapping: `CategoryId` (child) → `CategoryId` (parent)_
+    * _On Delete: CASCADE; On Update: NO ACTION_
+  * _Apply ➜ Apply ➜ Finish._
+
+* _Verify_
+  * _Expand `todolist ➜ Tables` and confirm `categories` and `items` exist._
+
+### Optional: SQL Script Alternative (run in a Workbench SQL tab)
+
+```
+CREATE DATABASE IF NOT EXISTS todolist;
+USE todolist;
+
+CREATE TABLE IF NOT EXISTS categories (
+  CategoryId INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  ItemId INT AUTO_INCREMENT PRIMARY KEY,
+  Description VARCHAR(255) NOT NULL,
+  CategoryId INT NULL,
+  INDEX idx_items_category (CategoryId),
+  CONSTRAINT fk_items_categories
+    FOREIGN KEY (CategoryId)
+    REFERENCES categories (CategoryId)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+);
+```
+
+### Optional: Create/Grant MySQL User (fix “Access denied”)
+
+```
+CREATE USER IF NOT EXISTS 'home'@'localhost' IDENTIFIED BY 'YOUR_PASSWORD';
+CREATE USER IF NOT EXISTS 'home'@'127.0.0.1' IDENTIFIED BY 'YOUR_PASSWORD';
+CREATE USER IF NOT EXISTS 'home'@'::1' IDENTIFIED BY 'YOUR_PASSWORD';
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX
+ON `todolist`.*
+TO 'home'@'localhost', 'home'@'127.0.0.1', 'home'@'::1';
+
+FLUSH PRIVILEGES;
+```
+
+### Run the Web Application
+
+```
+dotnet run
+```
+_or_
+```
+dotnet watch run
+```
+
+_Navigate to the localhost URL shown in the console and explore the project._
+
+## Testing
+
+The test project uses its own configuration file and expects `ConnectionStrings:TestConnection`.
+
+
+* Create `ToDoList.Tests/appsettings.json` with:
+```
+    {
+      "ConnectionStrings": {
+        "TestConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=[YOUR_ID];Password=[YOUR_PASSWORD];"
+      }
+    }
+```
+* Run tests
+From the repository root or from the ToDoList.Tests directory:
+```
+    dotnet test
+```
+## Known Bugs
 
 * _No known bugs._
 
 ## License
 
-* MIT
+* _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-## Contact Information
 
-_Please contact me with any questions or contribuitions, ashe@goldentongue.com_
+## 
 
-Copyright(c) _2022, updated February 2023, Ashe Urban_
+Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
