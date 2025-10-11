@@ -1,4 +1,4 @@
-# ToDoList (Identity Edition)
+# ToDoList (Identity Branch)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -52,10 +52,8 @@ _This branch introduces ASP.NET Core Identity to add user registration, login, a
   }
   ```
   _Notes:_
-  * _`Database=to_do_list` is created automatically by EF migrations on first run._
-  * _Replace `YOUR_PASSWORD` with your local MySQL user’s password._
-
-* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys. 
+  *  _Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+  * _Ensure your MySQL user has permissions to let EF create the database and all foreign keys.
 
 * _Create the database and tables automatically via migrations:_
   ```
@@ -102,4 +100,3 @@ _This branch introduces ASP.NET Core Identity to add user registration, login, a
 ##
 
 Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
-
