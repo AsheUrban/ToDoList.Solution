@@ -49,65 +49,14 @@ It replaces in-memory data with persistent storage and introduces migrations for
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=todolist;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
     }
   }
   ```
-  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. Use the exact schema name `todolist` (all lowercase)._
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
 
 * _Start your local MySQL server and open MySQL Workbench._
 
-### Build the Database Schema in MySQL Workbench (GUI)
-
-* _Create Schema_
-  * _Database ➜ Create Schema… ➜ Name: `todolist` ➜ Apply ➜ Apply ➜ Finish._
-
-* _Create `categories` table_
-  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
-  * _Columns tab:_
-    * _`CategoryId` → INT, check PK, NN, AI_
-    * _`Name` → VARCHAR(255), check NN_
-  * _Apply ➜ Apply ➜ Finish._
-
-* _Create `items` table_
-  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `items`_
-  * _Columns tab:_
-    * _`ItemId` → INT, check PK, NN, AI_
-    * _`Description` → VARCHAR(255), check NN_
-    * _`CategoryId` → INT (leave NULL if Items may exist without a Category; check NN if every Item must belong to one)_
-  * _Foreign Keys tab:_
-    * _Add Foreign Key ➜ Name: `fk_items_categories`_
-    * _Referenced Table: `categories`_
-    * _Column Mapping: `CategoryId` (child) → `CategoryId` (parent)_
-    * _On Delete: CASCADE; On Update: NO ACTION_
-  * _Apply ➜ Apply ➜ Finish._
-
-* _Verify_
-  * _Expand `todolist ➜ Tables` and confirm `categories` and `items` exist._
-
-### Optional: SQL Script Alternative (run in a Workbench SQL tab)
-
-```
-CREATE DATABASE IF NOT EXISTS todolist;
-USE todolist;
-
-CREATE TABLE IF NOT EXISTS categories (
-  CategoryId INT AUTO_INCREMENT PRIMARY KEY,
-  Name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS items (
-  ItemId INT AUTO_INCREMENT PRIMARY KEY,
-  Description VARCHAR(255) NOT NULL,
-  CategoryId INT NULL,
-  INDEX idx_items_category (CategoryId),
-  CONSTRAINT fk_items_categories
-    FOREIGN KEY (CategoryId)
-    REFERENCES categories (CategoryId)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION
-);
-```
 
 ### Run the Web Application
 
@@ -132,4 +81,4 @@ _Navigate to the localhost URL shown in the console and explore the project._
 
 ## 
 
-Copyright(c) 2023 Ashe Urban
+Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu 
