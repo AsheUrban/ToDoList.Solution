@@ -101,5 +101,5 @@ _This branch introduces ASP.NET Core Identity to add user registration, login, a
 
 ##
 
-Copyright(c) 2023 Ashe Urban
+Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
 
