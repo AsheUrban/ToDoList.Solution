@@ -40,8 +40,6 @@ support the new entity and improve project consistency._
 * _Maintains existing Identity authentication and CRUD functionality._
 * _Lays groundwork for future many-to-many relationships between Tags, Items, and Categories._
 
-
-
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
@@ -57,75 +55,10 @@ support the new entity and improve project consistency._
     }
   }
   ```
-  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. Use the exact schema name `todolist` (all lowercase)._
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
 
 * _Start your local MySQL server and open MySQL Workbench._
 
-### Build the Database Schema in MySQL Workbench (GUI)
-
-* _Create Schema_
-  * _Database ➜ Create Schema… ➜ Name: `todolist` ➜ Apply ➜ Apply ➜ Finish._
-
-* _Create `categories` table_
-  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
-  * _Columns tab:_
-    * _`CategoryId` → INT, check PK, NN, AI_
-    * _`Name` → VARCHAR(255), check NN_
-  * _Apply ➜ Apply ➜ Finish._
-
-* _Create `items` table_
-  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `items`_
-  * _Columns tab:_
-    * _`ItemId` → INT, check PK, NN, AI_
-    * _`Description` → VARCHAR(255), check NN_
-    * _`CategoryId` → INT (leave NULL if Items may exist without a Category; check NN if every Item must belong to one)_
-  * _Foreign Keys tab:_
-    * _Add Foreign Key ➜ Name: `fk_items_categories`_
-    * _Referenced Table: `categories`_
-    * _Column Mapping: `CategoryId` (child) → `CategoryId` (parent)_
-    * _On Delete: CASCADE; On Update: NO ACTION_
-  * _Apply ➜ Apply ➜ Finish._
-
-* _Verify_
-  * _Expand `todolist ➜ Tables` and confirm `categories` and `items` exist._
-
-### Optional: SQL Script Alternative (run in a Workbench SQL tab)
-
-```
-CREATE DATABASE IF NOT EXISTS todolist;
-USE todolist;
-
-CREATE TABLE IF NOT EXISTS categories (
-  CategoryId INT AUTO_INCREMENT PRIMARY KEY,
-  Name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS items (
-  ItemId INT AUTO_INCREMENT PRIMARY KEY,
-  Description VARCHAR(255) NOT NULL,
-  CategoryId INT NULL,
-  INDEX idx_items_category (CategoryId),
-  CONSTRAINT fk_items_categories
-    FOREIGN KEY (CategoryId)
-    REFERENCES categories (CategoryId)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION
-);
-```
-
-### Optional: Create/Grant MySQL User (fix “Access denied”)
-
-```
-CREATE USER IF NOT EXISTS 'home'@'localhost' IDENTIFIED BY 'YOUR_PASSWORD';
-CREATE USER IF NOT EXISTS 'home'@'127.0.0.1' IDENTIFIED BY 'YOUR_PASSWORD';
-CREATE USER IF NOT EXISTS 'home'@'::1' IDENTIFIED BY 'YOUR_PASSWORD';
-
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX
-ON `todolist`.*
-TO 'home'@'localhost', 'home'@'127.0.0.1', 'home'@'::1';
-
-FLUSH PRIVILEGES;
-```
 
 ### Run the Web Application
 
@@ -139,24 +72,6 @@ dotnet watch run
 
 _Navigate to the localhost URL shown in the console and explore the project._
 
-## Testing
-
-The test project uses its own configuration file and expects `ConnectionStrings:TestConnection`.
-
-
-* Create `ToDoList.Tests/appsettings.json` with:
-```
-    {
-      "ConnectionStrings": {
-        "TestConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=[YOUR_ID];Password=[YOUR_PASSWORD];"
-      }
-    }
-```
-* Run tests
-From the repository root or from the ToDoList.Tests directory:
-```
-    dotnet test
-```
 ## Known Bugs
 
 * _No known bugs._
