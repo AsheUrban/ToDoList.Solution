@@ -1,8 +1,19 @@
 # ToDoList (Identity Edition)
 
-#### A website that lets users organize to-do Items inside Categories, with authentication via ASP.NET Core Identity.
+#### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
-#### By Ashe Urban
+## Branches & Scope
+
+This project includes several branches that build upon each other in complexity — from a simple CRUD MVC app, to database integration, to authentication, and eventually to more advanced relational modeling.
+
+| **Branch** | **What it Demonstrates** | **Notes** |
+|-------------|--------------------------|-----------|
+| **main** | Basic ASP.NET Core MVC app in C# with a one-to-many relationship between Categories and Items using EF Core and MySQL. | Establishes foundational CRUD functionality and MVC structure. |
+| **connectdatabase** | Integration of Entity Framework Core with MySQL, configuring database connectivity and schema management. | *Emphasizes EF migrations over manual schema creation.* Demonstrates database setup, schema generation, and CRUD integration testing. |
+| **identity** | Adds ASP.NET Core **Identity** for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the Identity branch with **Tags** for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Prototype branch exploring **many-to-many** relationships using a join entity. | Conceptual next step after `main`; early prototype not recently updated. |
+| **mhm_many_to_many** | Companion branch to `joinentities_many_to_many`. | Parallel experiment reflecting pairing or alternative implementation. |
 
 ## Technologies Used
 
@@ -19,14 +30,11 @@
 
 ## Description
 
-_ToDoList (Identity Edition) is an MVC app that groups tasks (Items) under Categories (one-to-many). This version includes user authentication powered by ASP.NET Core Identity. On first run, EF Core migrations create both the application tables (`categories`, `items`) and the Identity tables (`AspNetUsers`, `AspNetRoles`, etc.). No manual table creation in MySQL Workbench is required; only ensure your MySQL user has the necessary privileges so migrations can create the database and foreign keys._
+_This branch introduces ASP.NET Core Identity to add user registration, login, and authentication._
 
-* _Register, Login, Logout (Identity)._
-* _List all Categories._
-* _View Category details (with Items)._
-* _Add new Categories._
-* _Add new Items to a Category._
-* _Delete Items; delete Categories (Items removed via cascade)._
+* _Implements ASP.NET Core Identity authentication and authorization._
+* _Adds registration and login functionality._
+* _Establishes a foundation for user-based data separation in MVC applications._
 
 ## Setup/Installation Requirements
 
