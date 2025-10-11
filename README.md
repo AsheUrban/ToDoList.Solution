@@ -1,4 +1,4 @@
-# ToDoList: Categories & Items
+# ToDoList (joinentities_many_to_many branch)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -38,9 +38,6 @@ Each Item can now belong to multiple Categories, and each Category can contain m
 * _Adds selection interfaces for linking Items and Categories._
 * _Demonstrates advanced relational mapping using EF Core._
 
-
-
-
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
@@ -56,7 +53,9 @@ Each Item can now belong to multiple Categories, and each Category can contain m
     }
   }
   ```
-  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+_Notes:_
+*  _Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys.
 
 * _Start your local MySQL server and open MySQL Workbench._
 
@@ -72,6 +71,14 @@ dotnet watch run
 ```
 
 _Navigate to the localhost URL shown in the console and explore the project._
+## Troubleshooting
+
+* _List contexts and drop database (dev reset):_
+  ```
+  dotnet ef dbcontext list
+  dotnet ef database drop -f --context ToDoListContext
+  dotnet ef database update --context ToDoListContext
+  ```
 
 ## Known Bugs
 
@@ -81,7 +88,7 @@ _Navigate to the localhost URL shown in the console and explore the project._
 
 * _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-
 ## 
 
 Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
+
