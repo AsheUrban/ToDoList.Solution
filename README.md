@@ -1,4 +1,4 @@
-# ToDoList (Identity Branch)
+# ToDoList (joinentities_many_to_many branch)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -20,40 +20,40 @@ This project includes several branches that build upon each other in complexity 
 
 * _C#_
 * _.NET 5 (ASP.NET Core MVC)_
-* _ASP.NET Core Identity (Authentication/Authorization)_
 * _CSHTML_
 * _CSS_
 * _Entity Framework Core_
 * _MySQL (SQL Database)_
-* _dotnet CLI_
+* _dotnet_
 * _LINQ_
 * _Markdown_
 
 ## Description
 
-_This branch expands on the many-to-many version of ToDoList by introducing a Tag entity and related updates. Tags add another layer of organization to the existing data model. The branch also includes small adjustments to routing, views, and data handling to support the new entity and improve project consistency._
+_This branch evolves the project’s data model to support many-to-many relationships between Categories and Items. 
+Each Item can now belong to multiple Categories, and each Category can contain multiple Items._
 
-* _Connects Tags with Items and Categories in a multi-entity relationship._
-* _Updates context and migrations to support expanded Tag relationships._
-* _Refines UI elements to display and manage Tags alongside other entities._
-* _Demonstrates advanced relational modeling and data interaction in EF Core._
-* _Represents the most feature-complete version of ToDoList._
+* _Implements many-to-many relationships between Items and Categories._
+* _Creates a join table managed by Entity Framework Core._
+* _Updates controllers and views to handle multiple associations._
+* _Adds selection interfaces for linking Items and Categories._
+* _Demonstrates advanced relational mapping using EF Core._
 
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
 
-* _Open a terminal and `cd` into the `ToDoList` project directory, then restore:_
+* _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
 
   ```
   dotnet restore
   ```
-* _Create `appsettings.json` in the `ToDoList` project folder with a connection string for MySQL (you may also use User Secrets):_
+* _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
 
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=YOUR_ID;Password=YOUR_PASSWORD;"
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=YOUR_ID;pwd=YOUR_PASSWORD;"
     }
   }
   ```
@@ -62,34 +62,19 @@ _Notes:_
 
 * _Ensure your MySQL user has permissions to let EF create the database and all foreign keys._
 
-* _Create the database and tables automatically via migrations:_
+* _Start your local MySQL server and open MySQL Workbench._
 
-  ```
-  dotnet ef migrations add Initial
-  ```
-  ```
-  dotnet ef database update
-  ```
-  _These two commands apply the `Initial` migration and scaffolds Identity tables plus app tables into `to_do_list`._
+### Run the Web Application
 
-* _Run the web application:_
+```
+dotnet run
+```
+_or_
+```
+dotnet watch run
+```
 
-  ```
-  dotnet run
-  ```
-  _or_
-  ```
-  dotnet watch run
-  ```
-  _Navigate to the shown localhost URL, register a new account, and/or create Categories, Items, and Tags. Actions are not currently limited to registered users._
-
-## Project Notes (Identity)
-
-* _This version uses ASP.NET Core Identity. The following tables are created automatically: `AspNetUsers`, `AspNetRoles`, `AspNetUserClaims`, `AspNetUserRoles`, `AspNetUserLogins`, `AspNetUserTokens`, `AspNetRoleClaims`._
-
-* _Identity requires `REFERENCES` privileges for foreign keys. If you see “REFERENCES command denied”, ensure your MySQL user has `REFERENCES`._
-
-* _Design-time (migrations) and runtime both read `ConnectionStrings:DefaultConnection`, so keep that value consistent across `appsettings.json`, `appsettings.Development.json`, or User Secrets._
+_Navigate to the localhost URL shown in the console and explore the project._
 
 ## Troubleshooting
 
@@ -103,13 +88,12 @@ _Notes:_
 
 ## Known Bugs
 
-* _Options for editing and deleting categories have been obscured until views have been created for them._
+* _No known bugs._
 
 ## License
 
 * _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
-##
+## 
 
 Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
-
