@@ -1,16 +1,21 @@
-# ToDoList: Categories & Items
 
-#### By Ashe Urban & Co.
+# ToDoList (main)
 
-_This project contains several branches, each with their own README.md and set up instructions. These branches were last updated and tested in 2025:_
-* main
-* connectdatabase
-* Identity
+#### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
-_These branches have not been updated since 2023:_
-* joinentities_many_to_many
-* mhm_many_to_many
+## Branches & Scope
 
+This project includes several branches that build upon each other in complexity — from a simple CRUD MVC app, to database integration, to authentication, and eventually to more advanced relational modeling.
+
+| **Branch** | **What it Demonstrates** | **Notes** |
+|-------------|--------------------------|-----------|
+| **main** | Base ASP.NET Core MVC app with a one-to-many relationship. | Establishes CRUD and MVC structure; includes unit testing. |
+| **connectdatabase** | Entity Framework Core connected to MySQL with persistent storage. | Emphasizes EF migrations over manual schema creation; appsettings.json connection config. |
+| **identity** | Adds ASP.NET Core Identity for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the `identity` branch with Tags for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Demonstrates a many-to-many relationship using an explicit join entity between core models. | Serves as a prototype exploring relational mapping without Identity integration; focuses on linking and unlinking records through the join table. |
+| **mhm_many_to_many** | Expands upon the many-to-many relationship with an alternative implementation. | Provides a refined or parallel approach to the join-entity pattern; does not include Identity features. |
+|
 
 ## Technologies Used
 
@@ -38,10 +43,12 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
 
 * _Clone or download the repository to your local machine._
 * _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
+
   ```
   dotnet restore
   ```
 * _Create `appsettings.json` in the `ToDoList` project folder with the following configuration:_
+
   ```
   {
     "ConnectionStrings": {
@@ -49,24 +56,24 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
     }
   }
   ```
-  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. Use the exact schema name `todolist` (all lowercase)._
+  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL credentials. Use the exact schema name `to_do_list` (all lowercase) as written, if you copy and paste this into your project, to ensure it matches what you will use to scaffold your database in MySQL Workbench. You can call your database whatever you like, as long as the connection string and the database name in MySQL match._
 
 * _Start your local MySQL server and open MySQL Workbench._
 
 ### Build the Database Schema in MySQL Workbench (GUI)
 
 * _Create Schema_
-  * _Database ➜ Create Schema… ➜ Name: `todolist` ➜ Apply ➜ Apply ➜ Finish._
+  * _Database ➜ Create Schema… ➜ Name: `to_do_list` ➜ Apply ➜ Apply ➜ Finish._
 
 * _Create `categories` table_
-  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
+  * _Right-click `to_do_list` ➜ Tables ➜ Create Table… ➜ Name: `categories`_
   * _Columns tab:_
     * _`CategoryId` → INT, check PK, NN, AI_
     * _`Name` → VARCHAR(255), check NN_
   * _Apply ➜ Apply ➜ Finish._
 
 * _Create `items` table_
-  * _Right-click `todolist` ➜ Tables ➜ Create Table… ➜ Name: `items`_
+  * _Right-click `to_do_list` ➜ Tables ➜ Create Table… ➜ Name: `items`_
   * _Columns tab:_
     * _`ItemId` → INT, check PK, NN, AI_
     * _`Description` → VARCHAR(255), check NN_
@@ -79,13 +86,13 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
   * _Apply ➜ Apply ➜ Finish._
 
 * _Verify_
-  * _Expand `todolist ➜ Tables` and confirm `categories` and `items` exist._
+  * _Expand `to_do_list ➜ Tables` and confirm `categories` and `items` exist._
 
 ### Optional: SQL Script Alternative (run in a Workbench SQL tab)
 
 ```
-CREATE DATABASE IF NOT EXISTS todolist;
-USE todolist;
+CREATE DATABASE IF NOT EXISTS to_do_list;
+USE to_do_list;
 
 CREATE TABLE IF NOT EXISTS categories (
   CategoryId INT AUTO_INCREMENT PRIMARY KEY,
@@ -123,6 +130,7 @@ The test project uses its own configuration file and expects `ConnectionStrings:
 
 
 * Create `ToDoList.Tests/appsettings.json` with:
+
 ```
     {
       "ConnectionStrings": {
@@ -132,6 +140,7 @@ The test project uses its own configuration file and expects `ConnectionStrings:
 ```
 * Run tests
 From the repository root or from the ToDoList.Tests directory:
+
 ```
     dotnet test
 ```
@@ -146,4 +155,5 @@ From the repository root or from the ToDoList.Tests directory:
 
 ## 
 
-Copyright(c) 2023 Ashe Urban
+Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu 
+
