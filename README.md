@@ -1,4 +1,3 @@
-
 # ToDoList (main)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
@@ -16,6 +15,7 @@ This project includes several branches that build upon each other in complexity 
 | **joinentities_many_to_many** | Demonstrates a many-to-many relationship using an explicit join entity between core models. | Serves as a prototype exploring relational mapping without Identity integration; focuses on linking and unlinking records through the join table. |
 | **mhm_many_to_many** | Expands upon the many-to-many relationship with an alternative implementation. | Provides a refined or parallel approach to the join-entity pattern; does not include Identity features. |
 |
+
 
 ## Technologies Used
 
@@ -42,6 +42,7 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
+
 * _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
 
   ```
@@ -52,11 +53,11 @@ _ToDoList is an MVC app that groups tasks (Items) under Categories. Each Categor
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=YOUR_ID;pwd=YOUR_PASSWORD;"
     }
   }
   ```
-  _NOTE: Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL credentials. Use the exact schema name `to_do_list` (all lowercase) as written, if you copy and paste this into your project, to ensure it matches what you will use to scaffold your database in MySQL Workbench. You can call your database whatever you like, as long as the connection string and the database name in MySQL match._
+  _NOTE: Replace `YOUR_ID` and `YOUR_PASSWORD` with your MySQL credentials. Use the exact schema name `to_do_list` (all lowercase) as written if you copy and paste this into your project, to ensure it matches what you will use to scaffold your database in MySQL Workbench. You can call your database whatever you like, as long as the connection string and the database name in MySQL match._
 
 * _Start your local MySQL server and open MySQL Workbench._
 
@@ -134,12 +135,13 @@ The test project uses its own configuration file and expects `ConnectionStrings:
 ```
     {
       "ConnectionStrings": {
-        "TestConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=[YOUR_ID];Password=[YOUR_PASSWORD];"
+        "TestConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=YOUR_ID;Password=YOUR_PASSWORD;"
       }
     }
 ```
-* Run tests
-From the repository root or from the ToDoList.Tests directory:
+  _NOTE: Replace `YOUR_ID` and `YOUR_PASSWORD` with your MySQL credentials. Use the exact schema name `to_do_list` (all lowercase) as written, if you copy and paste this into your project, to ensure it matches what you will use to scaffold your database in MySQL Workbench. You can call your database whatever you like, as long as the connection string and the database name in MySQL match._
+
+* Run tests from the repository root or from the ToDoList.Tests directory:
 
 ```
     dotnet test
@@ -153,7 +155,10 @@ From the repository root or from the ToDoList.Tests directory:
 * _Educational Use Only — This repository is provided for classroom and personal learning purposes. It is not licensed for public deployment, redistribution, or commercial use. No warranty or support is provided._
 
 
-## 
+##
 
-Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu 
+Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu
+
+
+
 
