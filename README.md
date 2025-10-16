@@ -1,4 +1,4 @@
-# ToDoList (joinentities_many_to_many branch)
+# ToDoList (joinentities_many_to_many)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -8,12 +8,13 @@ This project includes several branches that build upon each other in complexity 
 
 | **Branch** | **What it Demonstrates** | **Notes** |
 |-------------|--------------------------|-----------|
-| **main** | Basic ASP.NET Core MVC app in C# with a one-to-many relationship between Categories and Items using EF Core and MySQL. | Establishes foundational CRUD functionality and MVC structure. |
-| **connectdatabase** | Integration of Entity Framework Core with MySQL, configuring database connectivity and schema management. | *Emphasizes EF migrations over manual schema creation.* Demonstrates database setup, schema generation, and CRUD integration testing. |
-| **identity** | Adds ASP.NET Core **Identity** for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
-| **mhm_identity** | Expands upon the Identity branch with **Tags** for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
-| **joinentities_many_to_many** | Prototype branch exploring **many-to-many** relationships using a join entity. | Conceptual next step after `main`; early prototype not recently updated. |
-| **mhm_many_to_many** | Companion branch to `joinentities_many_to_many`. | Parallel experiment reflecting pairing or alternative implementation. |
+| **main** | Base ASP.NET Core MVC app with a one-to-many relationship. | Establishes CRUD and MVC structure; includes unit testing. |
+| **connectdatabase** | Entity Framework Core connected to MySQL with persistent storage. | Emphasizes EF migrations over manual schema creation; appsettings.json connection config. |
+| **identity** | Adds ASP.NET Core Identity for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the `identity` branch with Tags for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Demonstrates a many-to-many relationship using an explicit join entity between core models. | Serves as a prototype exploring relational mapping without Identity integration; focuses on linking and unlinking records through the join table. |
+| **mhm_many_to_many** | Expands upon the many-to-many relationship with an alternative implementation. | Provides a refined or parallel approach to the join-entity pattern; does not include Identity features. |
+|
 
 ## Technologies Used
 
@@ -29,8 +30,7 @@ This project includes several branches that build upon each other in complexity 
 
 ## Description
 
-_This branch evolves the project’s data model to support many-to-many relationships between Categories and Items. 
-Each Item can now belong to multiple Categories, and each Category can contain multiple Items._
+_This branch evolves the project’s data model to support many-to-many relationships between Categories and Items. Each Item can now belong to multiple Categories, and each Category can contain multiple Items._
 
 * _Implements many-to-many relationships between Items and Categories._
 * _Creates a join table managed by Entity Framework Core._
@@ -41,6 +41,7 @@ Each Item can now belong to multiple Categories, and each Category can contain m
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
+
 * _Open a terminal and `cd` into the `ToDoList` project directory, then run:_
 
   ```
@@ -51,16 +52,16 @@ Each Item can now belong to multiple Categories, and each Category can contain m
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=[YOUR ID];pwd=[YOUR_PASSWORD];"
+      "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=YOUR_ID;pwd=YOUR_PASSWORD;"
     }
   }
   ```
 _Notes:_
-*  _Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
-* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys.
+*  _Replace `YOUR_ID` and `YOUR_PASSWORD` with your MySQL credentials. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+
+* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys._
 
 * _Start your local MySQL server and open MySQL Workbench._
-
 
 ### Run the Web Application
 
@@ -73,6 +74,7 @@ dotnet watch run
 ```
 
 _Navigate to the localhost URL shown in the console and explore the project._
+
 ## Troubleshooting
 
 * _List contexts and drop database (dev reset):_
