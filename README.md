@@ -1,4 +1,4 @@
-# ToDoList (identity)
+# ToDoList (Identity Branch)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -87,7 +87,7 @@ _Notes:_
 
 * _This version uses ASP.NET Core Identity. The following tables are created automatically: `AspNetUsers`, `AspNetRoles`, `AspNetUserClaims`, `AspNetUserRoles`, `AspNetUserLogins`, `AspNetUserTokens`, `AspNetRoleClaims`._
 
-* _Identity requires `REFERENCES` privileges for foreign keys. If you see “REFERENCES command denied”, ensure your MySQL user has `REFERENCES` (see example SQL on main branch)._
+* _Identity requires `REFERENCES` privileges for foreign keys. If you see “REFERENCES command denied”, ensure your MySQL user has `REFERENCES`._
 
 * _Design-time (migrations) and runtime both read `ConnectionStrings:DefaultConnection`, so keep that value consistent across `appsettings.json`, `appsettings.Development.json`, or User Secrets._
 
