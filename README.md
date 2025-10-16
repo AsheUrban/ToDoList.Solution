@@ -1,4 +1,4 @@
-# ToDoList (connectdatabase branch)
+# ToDoList (connectdatabase)
 
 #### By Ashe Urban Grace Kostanich, Liam Campbell, Donovan Weber, and Jonathan Lu
 
@@ -8,12 +8,13 @@ This project includes several branches that build upon each other in complexity 
 
 | **Branch** | **What it Demonstrates** | **Notes** |
 |-------------|--------------------------|-----------|
-| **main** | Basic ASP.NET Core MVC app in C# with a one-to-many relationship between Categories and Items using EF Core and MySQL. | Establishes foundational CRUD functionality and MVC structure. |
-| **connectdatabase** | Integration of Entity Framework Core with MySQL, configuring database connectivity and schema management. | *Emphasizes EF migrations over manual schema creation.* Demonstrates database setup, schema generation, and CRUD integration testing. |
-| **identity** | Adds ASP.NET Core **Identity** for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
-| **mhm_identity** | Expands upon the Identity branch with **Tags** for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
-| **joinentities_many_to_many** | Prototype branch exploring **many-to-many** relationships using a join entity. | Conceptual next step after `main`; early prototype not recently updated. |
-| **mhm_many_to_many** | Companion branch to `joinentities_many_to_many`. | Parallel experiment reflecting pairing or alternative implementation. |
+| **main** | Base ASP.NET Core MVC app with a one-to-many relationship. | Establishes CRUD and MVC structure; includes unit testing. |
+| **connectdatabase** | Entity Framework Core connected to MySQL with persistent storage. | Emphasizes EF migrations over manual schema creation; appsettings.json connection config. |
+| **identity** | Adds ASP.NET Core Identity for user authentication and authorization. | Builds on `connectdatabase`, extending the EF configuration to include Identity tables, migrations, and secure login flows. |
+| **mhm_identity** | Expands upon the `identity` branch with Tags for both Categories and Items, illustrating additional relationships and feature growth. | Demonstrates iterative development beyond Identity integration; includes extended model logic and data relationships. |
+| **joinentities_many_to_many** | Demonstrates a many-to-many relationship using an explicit join entity between core models. | Serves as a prototype exploring relational mapping without Identity integration; focuses on linking and unlinking records through the join table. |
+| **mhm_many_to_many** | Expands upon the many-to-many relationship with an alternative implementation. | Provides a refined or parallel approach to the join-entity pattern; does not include Identity features. |
+|
 
 ## Technologies Used
 
@@ -29,8 +30,7 @@ This project includes several branches that build upon each other in complexity 
 
 ## Description
 
-_This branch extends the base ToDoList project by connecting it to a MySQL database using Entity Framework Core. 
-It replaces in-memory data with persistent storage and introduces migrations for managing the database schema._
+_This branch extends the base ToDoList project by connecting it to a MySQL database using Entity Framework Core. It replaces in-memory data with persistent storage and introduces migrations for managing the database schema._
 
 * _Implements ToDoListContext for EF Core integration._
 * _Configures connection strings in appsettings.json._
@@ -57,9 +57,11 @@ It replaces in-memory data with persistent storage and introduces migrations for
   ```
 _Notes:_
 *  _Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
-* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys.
+
+* _Ensure your MySQL user has permissions to let EF create the database and all foreign keys._
 
 * _Create the database and tables automatically via migrations:_
+
   ```
   dotnet ef migrations add Initial
   ```
@@ -69,6 +71,7 @@ _Notes:_
   _These two commands apply the `Initial` migration and scaffolds Identity tables plus app tables into `to_do_list`._
 
 * _Run the web application:_
+
   ```
   dotnet run
   ```
@@ -76,7 +79,7 @@ _Notes:_
   ```
   dotnet watch run
   ```
-  _Navigate to the shown localhost URL, register a new account, then create Categories and Items._
+  _Navigate to the shown localhost URL, register a new account, and/or create Categories and Items. Actions are not currently limited to registered users._
 
 ## Troubleshooting
 
