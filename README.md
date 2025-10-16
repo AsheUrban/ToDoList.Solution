@@ -41,6 +41,7 @@ _This branch extends the base ToDoList project by connecting it to a MySQL datab
 ## Setup/Installation Requirements
 
 * _Clone or download the repository to your local machine._
+
 * _Open a terminal and `cd` into the `ToDoList` project directory, then restore:_
 
   ```
@@ -51,12 +52,12 @@ _This branch extends the base ToDoList project by connecting it to a MySQL datab
   ```
   {
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=home;Password=YOUR_PASSWORD;"
+      "DefaultConnection": "Server=localhost;Port=3306;Database=to_do_list;User Id=YOUR_ID;Password=YOUR_PASSWORD;"
     }
   }
   ```
 _Notes:_
-*  _Replace `YOUR ID` and `YOUR_PASSWORD` with your MySQL password. You are also welcome to call your database whatever you like, in this case to_do_list is used._
+*  _Replace `YOUR_ID` and `YOUR_PASSWORD` with your MySQL credentials. You are also welcome to call your database whatever you like, in this case to_do_list is used._
 
 * _Ensure your MySQL user has permissions to let EF create the database and all foreign keys._
 
@@ -102,4 +103,3 @@ _Notes:_
 ## 
 
 Copyright(c) 2023 Ashe Urban, Grace Kostanich, Liam Campbell, Donovan Weber, Jonathan Lu 
-
